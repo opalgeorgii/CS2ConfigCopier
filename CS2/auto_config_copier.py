@@ -56,7 +56,9 @@ for key, value in kv.get("libraryfolders", {}).items():
 
 cs2_game_folder = None
 for lib in library_folders:
-    cs2_path_candidate = os.path.join(lib, "steamapps", "common", "Counter-Strike Global Offensive", "game", "csgo")
+    cs2_path_candidate = os.path.join(
+        lib, "steamapps", "common", "Counter-Strike Global Offensive", "game", "csgo"
+    )
     if os.path.exists(cs2_path_candidate):
         cs2_game_folder = cs2_path_candidate
         break
@@ -93,10 +95,10 @@ vcfg_files = [
 ]
 
 # -----------------------------
-# Source folder (current directory)
+# Source folders
 # -----------------------------
 
-src_folder = str(Path().absolute())
+cfg_src_folder = os.path.join(Path().absolute(), "cfg")
 
 # -----------------------------
 # Copy cfg files to game folder
@@ -106,7 +108,7 @@ cfg_dst_folder = os.path.join(cs2_game_folder, "cfg")
 os.makedirs(cfg_dst_folder, exist_ok=True)
 
 for file_name in cfg_files:
-    src_file = os.path.join(src_folder, file_name)
+    src_file = os.path.join(cfg_src_folder, file_name)
     dst_file = os.path.join(cfg_dst_folder, file_name)
     if os.path.exists(src_file):
         shutil.copy2(src_file, dst_file)
@@ -120,7 +122,7 @@ for user in user_folders:
     local_cfg_path = os.path.join(userdata_folder, user, "730", "local", "cfg")
     os.makedirs(local_cfg_path, exist_ok=True)
     for file_name in vcfg_files:
-        src_file = os.path.join(src_folder, file_name)
+        src_file = os.path.join(cfg_src_folder, file_name)
         dst_file = os.path.join(local_cfg_path, file_name)
         if os.path.exists(src_file):
             shutil.copy2(src_file, dst_file)
