@@ -1,0 +1,1 @@
+-novid -freq 240 -tickrate 128

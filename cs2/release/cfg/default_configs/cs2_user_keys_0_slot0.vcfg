@@ -51,7 +51,7 @@
 		"F2"		"vote option2"
 		"F3"		"autobuy"
 		"F4"		"rebuy"
-		"F5"		"exec cs2_1v1; unbind MOUSE4"
+		"F5"		"exec cs2_1v1"
 		"F6"		"exec cs2_nades"
 		"F7"		"exec cs2_fun"
 		"F10"		"quit prompt"
