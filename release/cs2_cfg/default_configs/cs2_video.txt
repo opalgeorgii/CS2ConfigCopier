@@ -13,7 +13,7 @@
 	"setting.refreshrate_denominator"		"1000"
 	"setting.fullscreen"		"1"
 	"setting.coop_fullscreen"		"0"
-	"setting.nowindowborder"		"0"
+	"setting.nowindowborder"		"1"
 	"setting.mat_vsync"		"0"
 	"setting.fullscreen_min_on_focus_loss"		"1"
 	"setting.high_dpi"		"0"
