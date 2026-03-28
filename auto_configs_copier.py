@@ -804,7 +804,7 @@ class App(tk.Tk):
 
         cs2_text = ttk.Label(
             cs2_frame,
-            text="Copies files from cs2_cfg/ into their respective CS2 directories",
+            text="Copies cs2_cfg/ files to CS2 directories",
             wraplength=300,
             justify="left",
         )
@@ -818,7 +818,7 @@ class App(tk.Tk):
 
         csgo_text = ttk.Label(
             csgo_frame,
-            text="Copies csgo_cfg/ into their respective CS:GO directories",
+            text="Copies csgo_cfg/ files to CS:GO directories",
             wraplength=300,
             justify="left",
         )
@@ -854,7 +854,7 @@ class App(tk.Tk):
 
         server_text = ttk.Label(
             server_frame,
-            text="Copies cs2_server_cfg/ into their respective server directories",
+            text="Copies cs2_server_cfg/ files to server directories",
             wraplength=300,
             justify="left",
         )
