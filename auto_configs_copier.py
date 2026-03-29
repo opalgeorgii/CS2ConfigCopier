@@ -379,6 +379,32 @@ def copy_tree_files(src_root: Path, dst_root: Path, log_lines: list[str]) -> tup
     return copied, failed
 
 
+def copy_cs2_default_configs(default_configs_folder: Path, app_folder: Path, log_lines: list[str]) -> tuple[int, int]:
+    if not default_configs_folder.exists() or not default_configs_folder.is_dir():
+        log_lines.append(f"SKIPPED missing folder: {default_configs_folder}")
+        return 0, 0
+
+    copied = 0
+    failed = 0
+
+    renamed_remote_files = {
+        Path("cs2_user_convars_0_slot0.vcfg"): app_folder / "remote" / "cs2_user_convars.vcfg",
+        Path("cs2_user_keys_0_slot0.vcfg"): app_folder / "remote" / "cs2_user_keys.vcfg",
+    }
+
+    for src_file in default_configs_folder.rglob("*"):
+        if not src_file.is_file():
+            continue
+
+        relative_path = src_file.relative_to(default_configs_folder)
+        dst_file = renamed_remote_files.get(relative_path, app_folder / "local" / "cfg" / relative_path)
+        c, f = copy_file(src_file, dst_file, log_lines)
+        copied += c
+        failed += f
+
+    return copied, failed
+
+
 def backup_file(file_path: Path, log_lines: list[str]) -> tuple[int, int]:
     if not file_path.exists():
         return 0, 0
@@ -530,7 +556,7 @@ def install_cs2_configs() -> str:
             log_lines.append(f"SKIPPED USER (no {CS2_APP_ID} folder): {user_folder}")
             continue
 
-        c, f = copy_tree_files(default_configs_folder, app_folder / "local" / "cfg", log_lines)
+        c, f = copy_cs2_default_configs(default_configs_folder, app_folder, log_lines)
         total_copied += c
         total_failed += f
         users_processed += 1
